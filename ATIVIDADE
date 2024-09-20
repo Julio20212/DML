@@ -1,0 +1,55 @@
+create database BANCO_EMPRESA3;
+use BANCO_EMPRESA3;
+
+create table departamento(
+	D_CODIGO int auto_increment primary key,
+    D_NOME varchar(50)
+);
+
+create table dependente(
+	DEP_CODIGO int auto_increment primary key,
+    FUN_CODIGO int,
+    DEP_NOME varchar(50),
+    foreign key (FUN_CODIGO) references funcionario (FUN_CODIGO)
+);
+
+create table funcionario(
+	FUN_CODIGO int auto_increment primary key,
+    D_CODIGO int,
+    NOME varchar(50),
+    NASCIMENTO date,
+    SALARIO decimal(10,2),
+    foreign key (D_CODIGO) references departamento (D_CODIGO)
+);
+
+select * from departamento;
+select * from dependente;
+select * from funcionario;
+
+insert into departamento(D_CODIGO, D_NOME)
+	values(1, "RH"),  (2, "TI"), (3, "MUNICIPAL"), (4, "CURSO"), (5, "FINANCEIRO"),
+          (6, "ESPORTE"), (7, "EDUCACIONAL"), (8, "SAÚDE"), (9, "SUSTENTABILIDADE"),  (10, "AMBIENTAL");
+
+INSERT INTO dependente (DEP_CODIGO, FUN_CODIGO, DEP_NOME)
+VALUES 	(1, 1, 'JOAQUINA'), 
+		(2, 2, 'PEDRO'), 
+		(3, 3, 'JOANA'), 
+		(4, 4, 'CAIO'), 
+		(5, 5, 'NICOLLE'), 
+		(6, 6, 'FELIPE'), 
+		(7, 7, 'LAURA'), 
+		(8, 8, 'PEDRO'), 
+		(9, 9, 'LUCAS'), 
+		(10, 10, 'GABRIELA');
+           
+INSERT INTO funcionario (FUN_CODIGO, D_CODIGO, NOME, NASCIMENTO, SALARIO)
+VALUES  (1, 1, 'JOAQUINA', '2001-08-22', 2000.00), 
+		(2, 2, 'PEDRO', '2000-05-13', 3000.00), 
+		(3, 3, 'JOANA', '2002-03-02', 1500.00), 
+		(4, 4, 'CAIO', '1999-06-04', 3000.00), 
+		(5, 5, 'NICOLLE', '1998-01-29', 5000.00), 
+		(6, 6, 'FELIPE', '2002-02-29', 3000.00), 
+		(7, 7, 'LAURA', '2003-08-08', 2000.00), 
+		(8, 8, 'PEDRO', '2001-11-10', 3000.00), 
+		(9, 9, 'LUCAS', '1999-12-30', 4000.00), 
+		(10, 10, 'GABRIELA', '2001-06-13', 3000.00);
